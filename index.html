@@ -1,4 +1,115 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simhasanat | Gökyüzü ve Hikaye Anlatıcılığı</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #050810;
+            --accent-color: #d4af37;
+            --text-color: #f4f4f4;
+            --section-bg: rgba(20, 20, 35, 0.85);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+            /* Garantili Yıldız Arka Planı */
+            background-image: linear-gradient(rgba(5, 8, 16, 0.7), rgba(5, 8, 16, 0.7)), 
+                              url('https://www.transparenttextures.com/patterns/stardust.png'),
+                              radial-gradient(circle at center, #1a2a6c, #b21f1f, #fdbb2d);
+            background-attachment: fixed;
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+            letter-spacing: 5px;
+        }
+
+        .cta-button {
+            padding: 15px 35px;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            background: rgba(212, 175, 55, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        section { padding: 80px 10%; }
+
+        .card {
+            background-color: var(--section-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        h2 { font-family: 'Playfair Display', serif; color: var(--accent-color); text-align: center; font-size: 2.2rem; }
+        h3 { color: var(--accent-color); }
+
+        footer { text-align: center; padding: 40px; background: rgba(5, 8, 16, 0.9); border-top: 1px solid var(--accent-color); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>SİMHASANAT</h1>
+        <p style="letter-spacing: 3px; font-weight: 300;">Göklerin Rehberliği & Masalların Şifası</p>
+        <a href="#hizmetler" class="cta-button">Keşfet</a>
+    </header>
+
+    <section id="hizmetler">
+        <h2>Çalışma Alanlarım</h2>
+        <div class="card">
+            <h3>Vedik Astroloji</h3>
+            <p>Nakshatralar ve bölümlü haritalar ışığında ruhun yol haritası.</p>
+        </div>
+        <div class="card">
+            <h3>Anlatı Terapisi</h3>
+            <p>Masal ve yazı terapisiyle iç dünyanızın sembollerini çözme süreci.</p>
+        </div>
+    </section>
+
+    <section id="gunluk">
+        <h2>Dijital Günlük</h2>
+        <div class="card">
+            <span style="color:var(--accent-color); font-size: 0.8rem;">12 Nisan 2026</span>
+            <h3>Gökyüzünün Sessiz Dili</h3>
+            <p>Kendi iç masalımıza kulak verme vakti...</p>
+        </div>
+    </section>
+
+    <footer>
+        <p style="color: var(--accent-color);">SİMHASANAT</p>
+        <p>Instagram: @Simhasanatblog</p>
+    </footer>
+
+</body>
+</html>
+
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
