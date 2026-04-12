@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simhasanat | Gökyüzü ve Hikaye Anlatıcılığı</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #050810;
+            --accent-color: #d4af37;
+            --text-color: #f4f4f4;
+            --section-bg: rgba(26, 21, 37, 0.8);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+            /* Mitolojik ve Yıldızlı Arka Plan Görseli */
+            background-image: 
+                linear-gradient(to bottom, rgba(5, 8, 16, 0.8), rgba(26, 21, 37, 0.9)),
+                url('https://images.unsplash.com/photo-1506318137071-a8e063b4bcc0?auto=format&fit=crop&q=80&w=1920');
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            letter-spacing: 5px;
+        }
+
+        p.tagline {
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            padding: 15px 35px;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.4s;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-bg);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        section {
+            padding: 100px 10%;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .card {
+            background-color: var(--section-bg);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(10px);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h3 {
+            color: var(--accent-color);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .blog-item {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed rgba(212, 175, 55, 0.3);
+        }
+
+        .date {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            background-color: rgba(5, 8, 16, 0.9);
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            section { padding: 60px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>SİMHASANAT</h1>
+        <p class="tagline">Göklerin Rehberliği & Masalların Şifası</p>
+        <a href="#hizmetler" class="cta-button">Keşfet</a>
+    </header>
+
+    <section id="hizmetler">
+        <h2>Çalışma Alanlarım</h2>
+        <div class="services">
+            <div class="card">
+                <h3>Vedik Astroloji</h3>
+                <p>Nakshatralar ve bölümlü haritalar ışığında, ruhun bu yaşamdaki teknik ve spiritüel yol haritası.</p>
+            </div>
+            <div class="card">
+                <h3>Anlatı Terapisi</h3>
+                <p>Masal ve yazı terapisiyle, iç dünyanızın sembollerini çözerek yeni bir gelecek inşa etme süreci.</p>
+            </div>
+            <div class="card">
+                <h3>Kadim Mitoloji</h3>
+                <p>Türk mitolojisinin derin arketiplerini kullanarak modern yaşama anlam katan rehberlik.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="günlük">
+        <h2>Dijital Günlük</h2>
+        <div class="card">
+            <div class="blog-item">
+                <span class="date">12 Nisan 2026</span>
+                <h3>Gökyüzünün Sessiz Dili</h3>
+                <p>Bugünlerde gökyüzü bizlere sabrın ve derinleşmenin önemini fısıldıyor. Kendi iç masalımıza kulak verme vakti...</p>
+                <a href="#" style="color: var(--accent-color); text-decoration: none; font-size: 0.9rem;">Devamını Oku →</a>
+            </div>
+            <div class="blog-item" style="border:none;">
+                <span class="date">10 Nisan 2026</span>
+                <h3>Umay Ana ve Şifa</h3>
+                <p>Kadim geleneklerimizde koruyucu ruhların sembolizmi, modern terapide nasıl bir karşılık buluyor?</p>
+                <a href="#" style="color: var(--accent-color); text-decoration: none; font-size: 0.9rem;">Devamını Oku →</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p style="color: var(--accent-color); font-weight: 600;">SİMHASANAT</p>
+        <p>Her ruh kendi tahtına oturmak için doğar.</p>
+        <div style="margin-top: 20px; font-size: 0.8rem; color: #888;">
+            @Simhasanatblog | @Astrovedagökselbilgelik
+        </div>
+    </footer>
+
+</body>
+</html>
