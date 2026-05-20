@@ -1,1 +1,233 @@
-<a href="/gokyol">Gök-Yol Rehberi: Kutunu Keşfet</a>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KUT: Gök-Yol Rehberi</title>
+    <style>
+        body {
+            background-color: #0b132b;
+            color: #f4f6f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding: 40px 20px;
+            margin: 0;
+        }
+        .otag-kapsayici {
+            max-width: 750px;
+            margin: 0 auto;
+            border: 2px solid #00b4d8;
+            padding: 40px 30px;
+            border-radius: 24px;
+            background: rgba(11, 19, 43, 0.95);
+            box-shadow: 0 0 30px rgba(0, 180, 216, 0.25);
+        }
+        .logo-alani {
+            margin-bottom: 20px;
+        }
+        .logo-alani svg {
+            width: 80px;
+            height: 80px;
+            fill: #00f5d4;
+            filter: drop-shadow(0 0 8px rgba(0, 245, 212, 0.6));
+        }
+        h1 {
+            color: #ffffff;
+            font-size: 32px;
+            margin: 10px 0;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(0, 245, 212, 0.4);
+        }
+        .alt-baslik {
+            color: #90e0ef;
+            font-size: 16px;
+            margin-bottom: 35px;
+            font-style: italic;
+        }
+        .form-grup {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #00f5d4;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #00b4d8;
+            background-color: #010718;
+            color: #ffffff;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+        input:focus {
+            outline: none;
+            border-color: #00f5d4;
+            box-shadow: 0 0 10px rgba(0, 245, 212, 0.3);
+        }
+        button {
+            background: linear-gradient(135deg, #00f5d4, #00b4d8);
+            color: #0b132b;
+            padding: 14px 40px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 245, 212, 0.3);
+            margin-top: 15px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 245, 212, 0.5);
+            color: #ffffff;
+        }
+        #destan-alani {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px dashed #00b4d8;
+            line-height: 1.8;
+            text-align: left;
+            color: #ffffff;
+        }
+        .destan-kart {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid #00f5d4;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 12px 12px 0;
+        }
+        .destan-baslik {
+            font-weight: bold;
+            color: #00f5d4;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .destan-unvan {
+            font-size: 13px;
+            color: #90e0ef;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        .yukleniyor {
+            text-align: center;
+            font-style: italic;
+            color: #90e0ef;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="otag-kapsayici">
+        <div class="logo-alani">
+            <svg viewBox="0 0 24 24">
+                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4M12,18C11.11,18 10.26,17.8 9.5,17.45C11.56,16.5 13,14.42 13,12C13,9.58 11.56,7.5 9.5,6.55C10.26,6.2 11.11,6 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18Z" />
+            </svg>
+        </div>
+        
+        <h1>Gök Bilge'nin Otağı</h1>
+        <div class="alt-baslik">Kutunu Keşfet, Yazgı Destanını Dinle</div>
+        
+        <div class="form-grup">
+            <label for="ad">ADINIZ / MAHLASINIZ:</label>
+            <input type="text" id="ad" placeholder="Örn: Asena, Bilge, Alp...">
+        </div>
+
+        <div class="form-grup">
+            <label for="dogumTarihi">DOĞUM TARİHİ:</label>
+            <input type="date" id="dogumTarihi">
+        </div>
+
+        <div class="form-grup">
+            <label for="dogumSaati">DOĞUM SAATİ:</label>
+            <input type="time" id="dogumSaati">
+        </div>
+
+        <button onclick="kutHesapla()">Yazgı Yazıtını Oku</button>
+
+        <div id="destan-alani" style="display: none;"></div>
+    </div>
+
+    <script>
+        function kutHesapla() {
+            const ad = document.getElementById('ad').value;
+            const tarih = document.getElementById('dogumTarihi').value;
+            const saat = document.getElementById('dogumSaati').value;
+            const destanAlani = document.getElementById('destan-alani');
+            
+            if(!ad || !tarih || !saat) {
+                alert("Lütfen otağa kabul edilmek için tüm bilgilerinizi eksiksiz girin.");
+                return;
+            }
+
+            destanAlani.style.display = "block";
+            destanAlani.innerHTML = `<div class="yukleniyor">
+                <h3>Gök Meclisi \${ad} için toplanıyor...</h3>
+                <p>Gök Bilge yıldız konaklarını inceliyor, kutlu esintiler birazdan yazgına fısıldayacak.</p>
+            </div>`;
+
+            // Vedik ve mitolojik hesaplama mekanizması
+            setTimeout(() => {
+                const tGun = new Date(tarih).getDate() || 1;
+                const sSaat = parseInt(saat.split(':')[0]) || 12;
+                
+                const burclar = [
+                    "Pars Otağı (Koç)", "Sığır Otağı (Boğa)", "İkizler Otağı (İkizler)", 
+                    "Yengeç Otağı (Yengeç)", "Arslan Otağı (Aslan)", "Başak Otağı (Başak)", 
+                    "Terazi Otağı (Terazi)", "Akrep Otağı (Akrep)", "Yay Han Otağı (Yay)", 
+                    "Oğlak Otağı (Oğlak)", "Kova Otağı (Kova)", "Balık Otağı (Balık)"
+                ];
+                
+                const yukselenBurc = burclar[(tGun + sSaat) % 12];
+                
+                destanAlani.innerHTML = `
+                    <h2 style="color: #00f5d4; text-align: center; margin-bottom: 25px;">— \${ad} Han'ın Yazgı Destanı —</h2>
+                    
+                    <div class="destan-kart">
+                        <div class="destan-baslik">Yükselen Karakter: \${yukselenBurc}</div>
+                        <div class="destan-unvan">Otağ ve Alp Kapısı</div>
+                        <p>Dünyayı adeta bu otağın pencerelerinden seyrediyor, yaşamı bu zırhla karşılıyorsun. Ruhunun dış dünyaya vuran ilk soluğu, bu konağın töresiyle şekillenir.</p>
+                    </div>
+
+                    <div class="destan-kart">
+                        <div class="destan-baslik">Kün Han (Güneş) Yerleşimi</div>
+                        <div class="destan-unvan">Ruhun Sönmeyen Közü</div>
+                        <p>Öz kimliğini ve yaşam amacını temsil eden Kün Han, haritanda parlıyor. İçindeki kutsal ateşi besleme, iradeni ve yaratıcılığını bir hakan edasıyla toplum önünde sergileme vaktindir.</p>
+                    </div>
+
+                    <div class="destan-kart">
+                        <div class="destan-baslik">Ay Ata (Ay) Yerleşimi</div>
+                        <div class="destan-unvan">Duyguların Sonsuz Ummanı</div>
+                        <p>Zihnini, sezgilerini ve hafızanı yöneten Ay Ata, sana derin hisler fısıldıyor. Ruhunun sesini duyabilmek için karmaşadan uzaklaşmalı, kendi sessiz sığınaklarında yıldızların ritmini dinlemelisin.</p>
+                    </div>
+
+                    <div class="destan-kart">
+                        <div class="destan-baslik">Erlik Han (Satürn) Sınavı</div>
+                        <div class="destan-unvan">Zamanın ve Törenin Muhafızı</div>
+                        <p>Hayatındaki gecikmeler, sorumluluklar ve geçmen gereken büyük sabır sınavları Erlik Han'ın gözetimindedir. Karşılaştığın engeller bir ceza değil; ruhunu çelikleştirmek, seni gerçek bir bilgiye ulaştırmak için konulmuş sınır taşlarıdır.</p>
+                    </div>
+
+                    <div class="destan-kart">
+                        <div class="destan-baslik">Ülgen Han (Jüpiter) Bereketi</div>
+                        <div class="destan-unvan">Göklerin Bilgelik Kapısı</div>
+                        <p>Sana bahşedilen bolluk, yüksek idrak ve ruhsal koruma Ülgen Han'ın elindedir. Paylaştıkça artan bu ilahi hazineyi hayatına almak için, bilgeliği rehber edinmeli ve çevrene kut saçmalısın.</p>
+                    </div>
+
+                    <p style="text-align: center; color: #90e0ef; font-style: italic; margin-top: 30px;">"Gök Tanrı'nın ışığı ve Gök Bilge'nin şefkati yolunu her daim aydınlatsın."</p>
+                `;
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
+
