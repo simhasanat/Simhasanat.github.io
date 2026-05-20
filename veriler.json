@@ -1,0 +1,38 @@
+{
+  "gezegenler": {
+    "Sun": {
+      "ad": "Kün Han",
+      "unvan": "Ruhun Sönmeyen Közü",
+      "ogüt": "Öz kimliğini ve yaşam amacını temsil eder. Işığını toplum önünde bir hakan gibi parlatma vaktidir."
+    },
+    "Moon": {
+      "ad": "Ay Ata",
+      "unvan": "Duyguların Sonsuz Ummanı",
+      "ogüt": "İç dünyanı, sezgilerini ve hafızanı yönetir. Ruhunun sesini dinlemek için sessiz sığınaklara ihtiyacın var."
+    },
+    "Jupiter": {
+      "ad": "Ülgen Han",
+      "unvan": "Göklerin Bilgelik Kapısı",
+      "ogüt": "Sana bahşedilen bolluk, bereket ve ruhsal derinliktir. Bilgini paylaştıkça otağının bereketi artar."
+    },
+    "Saturn": {
+      "ad": "Erlik Han",
+      "unvan": "Zamanın ve Törenin Muhafızı",
+      "ogüt": "Hayatındaki kısıtlamalar ve geçmen gereken büyük sabır sınavlarıdır. Karşılaştığın engeller ruhunu çelikleştirmek içindir."
+    }
+  },
+  "burclar": {
+    "Aries": "Pars Otağı",
+    "Taurus": "Sığır (Öküz) Otağı",
+    "Gemini": "İkizler Otağı",
+    "Cancer": "Yengeç Otağı",
+    "Leo": "Arslan Otağı",
+    "Virgo": "Başak Otağı",
+    "Libra": "Terazi Otağı",
+    "Scorpio": "Akrep Otağı",
+    "Sagittarius": "Yay Han Otağı",
+    "Capricorn": "Oğlak Otağı",
+    "Aquarius": "Kova Otağı",
+    "Pisces": "Balık Otağı"
+  }
+}
