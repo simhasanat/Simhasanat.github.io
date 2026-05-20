@@ -74,7 +74,7 @@
             letter-spacing: 1.5px;
             text-transform: uppercase;
         }
-        input, select {
+        input {
             padding: 14px;
             border: 1px solid rgba(0, 180, 216, 0.4);
             background-color: #030712;
@@ -83,7 +83,7 @@
             font-size: 15px;
             transition: all 0.3s ease;
         }
-        input:focus, select:focus {
+        input:focus {
             outline: none;
             border-color: var(--cyan-core);
             box-shadow: 0 0 15px rgba(0, 245, 212, 0.3);
@@ -176,13 +176,12 @@
             </div>
         </div>
 
-        <button class="btn-otaq" onclick="mühendislikKutMotoru()">Yazgı Yazıtını İnşa Et</button>
+        <button class="btn-otaq" onclick="muhendislikKutMotoru()">Yazgı Yazıtını İnşa Et</button>
 
         <div id="destan-alani" style="display: none;"></div>
     </div>
 
     <script>
-        // KORUNAN COĞRAFİ VE ASTROLOJİK VERİ KÜTÜPHANESİ
         const ArketipSozlugu = {
             Hanlar: {
                 Sun: { ad: "Kün Han", unvan: "Ruhun Sönmeyen Közü & Öz İrade", desc: "İçindeki kutsal ateşi, yaşam amacını ve hakan edasıyla parlaması gereken o lider ruhu temsil eder. Işığını saklamamalı, törene uygun şekilde etrafını aydınlatmalısın." },
@@ -199,7 +198,7 @@
             Nakshatralar: [
                 { ad: "Ashwini", bilge: "Umay Ana'nın Şifacı Eli", sifa: "Hızlı başlangıçlar, ruhsal ve bedensel şifa gücü, öncülük enerjisi." },
                 { ad: "Bharani", bilge: "Ölüm ve Yeniden Doğuş Bilgesi", sifa: "Büyük dönüşümler, arınma, sancılı ama kutsal doğum süreçleri." },
-                { ad: "Krittika", bilge: "Kün Han'ın Ateş Kılıcı", sifa: "Keskin zeka, saflaştırıcı eleştiri gücü, hakikati ortaya çıkarma." },
+                { ad: "Krittika", bilge: "Kün Han's Ateş Kılıcı", sifa: "Keskin zeka, saflaştırıcı eleştiri gücü, hakikati ortaya çıkarma." },
                 { ad: "Rohini", bilge: "Toprak Ana'nın Bereket Örtüsü", sifa: "Yaratıcılık, estetik arzu, büyüme ve besleme kabiliyeti." },
                 { ad: "Mrigashira", bilge: "Kutlu Geyiğin İzini Süren Bilge", sifa: "Sürekli arayış, bilgi açlığı, ruhsal keşif seyahatleri." },
                 { ad: "Ardra", bilge: "Fırtına Sonrası Gelen Berraklık", sifa: "Gözyaşlarıyla gelen temizlik, krizleri yönetme ve kaos gücü." },
@@ -227,7 +226,7 @@
             ]
         };
 
-        function mühendislikKutMotoru() {
+        function muhendislikKutMotoru() {
             const ad = document.getElementById('ad').value.trim();
             const tarih = document.getElementById('dogumTarihi').value;
             const saat = document.getElementById('dogumSaati').value;
@@ -245,7 +244,6 @@
                     <p>Sidereal (Vedik) efemeris çarkları dönüyor. Doğduğun andaki yıldız konakları (Nakshatralar) ve hanların yerleşimleri hesaplanıyor...</p>
                 </div>`;
 
-            // HASSAS VE KORUNAN CLIENT-SIDE ASTRONOMİK ALGORİTMA (Milisaniyelik Dönüşüm)
             setTimeout(() => {
                 const dObj = new Date(tarih);
                 const gun = dObj.getDate();
@@ -255,30 +253,23 @@
                 const sSaat = parseInt(saatParca[0]);
                 const sDakika = parseInt(saatParca[1]);
 
-                // Zaman matrisi üzerinde hash bazlı kozmik izdüşüm hesaplama
-                const jülyenMatris = Math.abs((yil - 1990) * 365 + (ay * 30) + gun + (sSaat / 24));
-                
-                // Vedik Zodyak Sapması (Lahiri Ayanamsa Simülasyon Katsayısı)
+                const juyenMatris = Math.abs((yil - 1990) * 365 + (ay * 30) + gun + (sSaat / 24));
                 const ayanamsaFarki = 23.5;
                 
-                // Gezegen konumlarının milimetrik izdüşümleri
-                const gunesDerece = Math.floor((jülyenMatris * 0.9856) - ayanamsaFarki + 360) % 360;
-                const ayDerece = Math.floor((jülyenMatris * 13.176) + (sDakika * 0.1) + 360) % 360;
-                const saturnDerece = Math.floor((jülyenMatris * 0.09) + 280) % 360; 
-                const jupiterDerece = Math.floor((jülyenMatris * 0.27) + 120) % 360;
+                const gunesDerece = Math.floor((juyenMatris * 0.9856) - ayanamsaFarki + 360) % 360;
+                const ayDerece = Math.floor((juyenMatris * 13.176) + (sDakika * 0.1) + 360) % 360;
+                const saturnDerece = Math.floor((juyenMatris * 0.09) + 280) % 360; 
+                const jupiterDerece = Math.floor((juyenMatris * 0.27) + 120) % 360;
                 const yukselenDerece = Math.floor(((sSaat * 15) + (sDakika * 0.25) + (gun * 2)) % 360);
 
-                // Burç İndeksleri (30 derecelik 12 ev sistemi)
-                const gBurcIdx = Math.floor(gunesDerece / 30);
-                const aBurcIdx = Math.floor(ayDerece / 30);
-                const sBurcIdx = Math.floor(saturnDerece / 30);
-                const jBurcIdx = Math.floor(jupiterDerece / 30);
-                const yBurcIdx = Math.floor(yukselenDerece / 30);
+                const gBurcIdx = Math.floor(gunesDerece / 30) % 12;
+                const aBurcIdx = Math.floor(ayDerece / 30) % 12;
+                const sBurcIdx = Math.floor(saturnDerece / 30) % 12;
+                const jBurcIdx = Math.floor(jupiterDerece / 30) % 12;
+                const yBurcIdx = Math.floor(yukselenDerece / 30) % 12;
 
-                // 27 Nakshatra İndeksi (13 derece 20 dakikalık konaklar)
                 const naksIdx = Math.floor(ayDerece / 13.333) % 27;
 
-                // NARRATIVE THERAPY / YAZGI YAZITI GENERATOR
                 const b = ArketipSozlugu.Burclar;
                 const h = ArketipSozlugu.Hanlar;
                 const n = ArketipSozlugu.Nakshatralar[naksIdx];
@@ -313,7 +304,7 @@
                     <div class="destan-kart">
                         <div class="destan-baslik">${h.Saturn.ad} Sınavı: ${b[sBurcIdx]}</div>
                         <div class="destan-unvan">${h.Saturn.unvan}</div>
-                        <p class="narrative-p">${h.Erlik Han ? h.Erlik Han.desc : h.Saturn.desc} Bu alandaki kısıtlamalar ruhunu çelikleştirmek ve seni olgunluğa ulaştırmak için var olan gelişim eşiklerindir.</p>
+                        <p class="narrative-p">${h.Saturn.desc} Bu alandaki kısıtlamalar ruhunu çelikleştirmek ve seni olgunluğa ulaştırmak için var olan gelişim eşiklerindir.</p>
                     </div>
 
                     <div class="destan-kart">
@@ -333,5 +324,6 @@
     </script>
 </body>
 </html>
+
 
 
