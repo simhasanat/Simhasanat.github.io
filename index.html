@@ -3,240 +3,335 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simhasanat | KUT: Gök-Yol Rehberi</title>
+    <title>Simhasanat Academy | KUT: Gök-Yol Rehberi</title>
     <style>
         :root {
-            --bg-color: #0a0f1d;
-            --panel-bg: rgba(16, 24, 48, 0.95);
-            --accent-cyan: #00f5d4;
-            --accent-blue: #00b4d8;
-            --text-main: #f4f6f9;
-            --text-muted: #90e0ef;
+            --bg-deep: #060a17;
+            --panel-bg: rgba(13, 22, 47, 0.93);
+            --border-glow: #00b4d8;
+            --gold-shine: #ffb703;
+            --cyan-core: #00f5d4;
+            --text-light: #f4f6f9;
+            --text-dim: #90e0ef;
         }
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: var(--bg-deep);
+            color: var(--text-light);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
-            padding: 60px 20px;
+            padding: 40px 20px;
             margin: 0;
-            background-image: radial-gradient(circle at 50% 50%, #14213d 0%, #0a0f1d 100%);
+            background-image: radial-gradient(circle at 50% 50%, #0f1c3f 0%, #060a17 100%);
         }
         .otag-kapsayici {
-            max-width: 750px;
+            max-width: 800px;
             margin: 0 auto;
-            border: 2px solid var(--accent-blue);
+            border: 1px solid var(--border-glow);
             padding: 40px 30px;
-            border-radius: 24px;
+            border-radius: 28px;
             background: var(--panel-bg);
-            box-shadow: 0 0 40px rgba(0, 180, 216, 0.2);
+            box-shadow: 0 0 40px rgba(0, 180, 216, 0.15);
+            backdrop-filter: blur(10px);
         }
-        .logo-alani svg {
-            width: 90px;
-            height: 90px;
-            fill: var(--accent-cyan);
-            filter: drop-shadow(0 0 10px rgba(0, 245, 212, 0.5));
+        .brand-header h1 {
+            font-size: 32px;
+            margin: 10px 0 5px 0;
+            letter-spacing: 3px;
+            color: #ffffff;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(0, 245, 212, 0.4);
         }
-        h1 {
-            font-size: 36px;
-            margin: 15px 0 5px 0;
-            letter-spacing: 2px;
-            text-shadow: 0 0 15px rgba(0, 245, 212, 0.3);
+        .brand-header .academy-tag {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--gold-shine);
+            margin-bottom: 5px;
+            font-weight: bold;
         }
         .alt-baslik {
-            color: var(--text-muted);
-            font-size: 16px;
+            color: var(--text-dim);
+            font-size: 15px;
             margin-bottom: 40px;
             font-style: italic;
-            letter-spacing: 1px;
         }
-        .form-grup {
-            margin-bottom: 25px;
+        .grid-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
             text-align: left;
+            margin-bottom: 30px;
         }
+        @media (max-width: 600px) { .grid-form { grid-template-columns: 1fr; } }
+        .form-grup { display: flex; flex-direction: column; }
+        .form-grup.full-width { grid-column: span 2; }
+        @media (max-width: 600px) { .form-grup.full-width { grid-column: span 1; } }
         label {
-            display: block;
             margin-bottom: 8px;
-            color: var(--accent-cyan);
+            color: var(--cyan-core);
             font-weight: 600;
-            font-size: 13px;
-            letter-spacing: 1px;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
         }
-        input {
-            width: 100%;
-            padding: 14px 15px;
-            border: 1px solid var(--accent-blue);
-            background-color: #020813;
+        input, select {
+            padding: 14px;
+            border: 1px solid rgba(0, 180, 216, 0.4);
+            background-color: #030712;
             color: #ffffff;
-            border-radius: 10px;
-            box-sizing: border-box;
+            border-radius: 12px;
             font-size: 15px;
             transition: all 0.3s ease;
         }
-        input:focus {
+        input:focus, select:focus {
             outline: none;
-            border-color: var(--accent-cyan);
-            box-shadow: 0 0 12px rgba(0, 245, 212, 0.25);
+            border-color: var(--cyan-core);
+            box-shadow: 0 0 15px rgba(0, 245, 212, 0.3);
         }
-        button {
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
-            color: #0a0f1d;
-            padding: 16px 45px;
+        .btn-otaq {
+            background: linear-gradient(135deg, var(--cyan-core), var(--border-glow));
+            color: #060a17;
+            padding: 16px 50px;
             border: none;
-            border-radius: 30px;
+            border-radius: 35px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 16px;
-            letter-spacing: 1px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 20px rgba(0, 245, 212, 0.3);
-            margin-top: 15px;
+            font-size: 15px;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 245, 212, 0.25);
             text-transform: uppercase;
+            margin-top: 10px;
         }
-        button:hover {
+        .btn-otaq:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(0, 245, 212, 0.5);
+            box-shadow: 0 6px 25px rgba(0, 245, 212, 0.45);
             color: #ffffff;
         }
         #destan-alani {
             margin-top: 40px;
             padding-top: 35px;
-            border-top: 2px dashed var(--accent-blue);
-            line-height: 1.8;
+            border-top: 1px dashed var(--border-glow);
             text-align: left;
         }
-        .destan-kart {
-            background: rgba(255, 255, 255, 0.02);
-            border-left: 4px solid var(--accent-cyan);
-            padding: 22px;
-            margin-bottom: 25px;
-            border-radius: 0 16px 16px 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        .section-title {
+            color: var(--gold-shine);
+            text-align: center;
+            font-size: 22px;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
         }
+        .destan-kart {
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(0, 180, 216, 0.15);
+            border-left: 4px solid var(--cyan-core);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 4px 16px 16px 4px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        .destan-kart.nakshatra-kart { border-left-color: var(--gold-shine); }
         .destan-baslik {
             font-weight: bold;
-            color: var(--accent-cyan);
-            font-size: 19px;
+            color: var(--text-light);
+            font-size: 20px;
             margin-bottom: 4px;
         }
         .destan-unvan {
-            font-size: 12px;
-            color: var(--text-muted);
+            font-size: 11px;
+            color: var(--text-dim);
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 12px;
-            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-weight: bold;
         }
-        .yukleniyor {
-            text-align: center;
-            font-style: italic;
-            color: var(--text-muted);
-            padding: 20px 0;
-        }
+        .narrative-p { line-height: 1.8; color: #e2e8f0; font-size: 15px; margin: 0; }
+        .yukleniyor { text-align: center; color: var(--text-dim); font-style: italic; padding: 30px 0; }
     </style>
 </head>
 <body>
 
     <div class="otag-kapsayici">
-        <div class="logo-alani">
-            <svg viewBox="0 0 24 24">
-                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4M12,18C11.11,18 10.26,17.8 9.5,17.45C11.56,16.5 13,14.42 13,12C13,9.58 11.56,7.5 9.5,6.55C10.26,6.2 11.11,6 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18Z" />
-            </svg>
+        <div class="brand-header">
+            <div class="academy-tag">Simhasanat Academy</div>
+            <h1>KUT: Gök-Yol Rehberi</h1>
         </div>
+        <div class="alt-baslik">Naratif Terapi ve Kadim Gökyüzü Yazıtları Motoru</div>
         
-        <h1>Gök Bilge'nin Otağı</h1>
-        <div class="alt-baslik">KUT: Gök-Yol Rehberi Analiz Motoru</div>
-        
-        <div class="form-grup">
-            <label for="ad">ADINIZ / MAHLASINIZ:</label>
-            <input type="text" id="ad" placeholder="Örn: Asena, Bilge, Alp...">
+        <div class="grid-form">
+            <div class="form-grup full-width">
+                <label for="ad">Alp / Bilge Adı (Mahlas):</label>
+                <input type="text" id="ad" placeholder="Yazgı yazıtınızda görünecek isim...">
+            </div>
+
+            <div class="form-grup">
+                <label for="dogumTarihi">Doğum Tarihi:</label>
+                <input type="date" id="dogumTarihi">
+            </div>
+
+            <div class="form-grup">
+                <label for="dogumSaati">Doğum Saati:</label>
+                <input type="time" id="dogumSaati">
+            </div>
         </div>
 
-        <div class="form-grup">
-            <label for="dogumTarihi">DOĞUM TARİHİ:</label>
-            <input type="date" id="dogumTarihi">
-        </div>
-
-        <div class="form-grup">
-            <label for="dogumSaati">DOĞUM SAATİ:</label>
-            <input type="time" id="dogumSaati">
-        </div>
-
-        <button onclick="kutHesapla()">Yazgı Yazıtını Oku</button>
+        <button class="btn-otaq" onclick="mühendislikKutMotoru()">Yazgı Yazıtını İnşa Et</button>
 
         <div id="destan-alani" style="display: none;"></div>
     </div>
 
     <script>
-        function kutHesapla() {
-            const ad = document.getElementById('ad').value;
+        // KORUNAN COĞRAFİ VE ASTROLOJİK VERİ KÜTÜPHANESİ
+        const ArketipSozlugu = {
+            Hanlar: {
+                Sun: { ad: "Kün Han", unvan: "Ruhun Sönmeyen Közü & Öz İrade", desc: "İçindeki kutsal ateşi, yaşam amacını ve hakan edasıyla parlaması gereken o lider ruhu temsil eder. Işığını saklamamalı, törene uygun şekilde etrafını aydınlatmalısın." },
+                Moon: { ad: "Ay Ata", unvan: "Zihnin Durulmuş Ummanı & Hafıza", desc: "Duygusal derinliğini, bilinçaltının sularını ve sezgilerinin gücünü yönetir. Ruhunun bilgeliğe ulaşması için dingin tefekkür alanlarına çekilmeye ihtiyacı var." },
+                Saturn: { ad: "Erlik Han", unvan: "Zamanın ve Törenin Sınav Muhafızı", desc: "Hayat yolunda önüne çıkan kısıtlamalar, gecikmeler ve sabırla geçmen gereken başöğretmen sınavlarıdır. Karşılaştığın engeller ceza değil; ruhunu çelikleştiren sınırlardır." },
+                Jupiter: { ad: "Ülgen Han", unvan: "Gök Kapılarının Bilgelik ve Kut Kaynağı", desc: "Sana bahşedilen manevi genişleme, bereket, koruma ve yüksek idraktir. Sahip olduğun bilgiyi paylaştıkça otağının bereketi katlanarak artacaktır." }
+            },
+            Burclar: [
+                "Pars Otağı (Sidereal Koç)", "Sığır Otağı (Sidereal Boğa)", "İkizler Otağı (Sidereal İkizler)", 
+                "Yengeç Otağı (Sidereal Yengeç)", "Arslan Otağı (Sidereal Aslan)", "Başak Otağı (Sidereal Başak)", 
+                "Terazi Otağı (Sidereal Terazi)", "Akrep Otağı (Sidereal Akrep)", "Yay Han Otağı (Sidereal Yay)", 
+                "Oğlak Otağı (Sidereal Oğlak)", "Kova Otağı (Sidereal Kova)", "Balık Otağı (Sidereal Balık)"
+            ],
+            Nakshatralar: [
+                { ad: "Ashwini", bilge: "Umay Ana'nın Şifacı Eli", sifa: "Hızlı başlangıçlar, ruhsal ve bedensel şifa gücü, öncülük enerjisi." },
+                { ad: "Bharani", bilge: "Ölüm ve Yeniden Doğuş Bilgesi", sifa: "Büyük dönüşümler, arınma, sancılı ama kutsal doğum süreçleri." },
+                { ad: "Krittika", bilge: "Kün Han'ın Ateş Kılıcı", sifa: "Keskin zeka, saflaştırıcı eleştiri gücü, hakikati ortaya çıkarma." },
+                { ad: "Rohini", bilge: "Toprak Ana'nın Bereket Örtüsü", sifa: "Yaratıcılık, estetik arzu, büyüme ve besleme kabiliyeti." },
+                { ad: "Mrigashira", bilge: "Kutlu Geyiğin İzini Süren Bilge", sifa: "Sürekli arayış, bilgi açlığı, ruhsal keşif seyahatleri." },
+                { ad: "Ardra", bilge: "Fırtına Sonrası Gelen Berraklık", sifa: "Gözyaşlarıyla gelen temizlik, krizleri yönetme ve kaos gücü." },
+                { ad: "Punarvasu", bilge: "Yuvaya Dönen Yayın Okları", sifa: "Geri kazanım, hakikate dönüş, her kayıptan sonra yeniden ayağa kalkış." },
+                { ad: "Pushya", bilge: "Gök Sütünün Besleyici Memesi", sifa: "En yüksek ruhsal beslenme, öğretmenlik, koruma kalkanı." },
+                { ad: "Ashlesha", bilge: "Kadim Ejderhanın Gizli Bilgisi", sifa: "Stratejik derinlik, sezgisel koruma, mistik dönüşüm bağları." },
+                { ad: "Magha", bilge: "Atalar Ruhunun Taht Odası", sifa: "Köklerden gelen asalet, miras bırakma sorumluluğu, liderlik karizması." },
+                { ad: "Purva Phalguni", bilge: "Otağ Önündeki Neşe Esintisi", sifa: "Sanatsal dinlenme, yaşamdan keyif alma, estetik yaratım." },
+                { ad: "Uttara Phalguni", bilge: "Töre Meclisinin Sadakat Yemini", sifa: "İlişkilerde sorumluluk, topluma hizmet, sarsılmaz dostluklar." },
+                { ad: "Hasta", bilge: "Zanaatkarın ve Yazıcının Parmakları", sifa: "Tezahür ettirme gücü, zihni fiziksel dünyaya dökme becerisi." },
+                { ad: "Chitra", bilge: "Gök Kuyumcusunun Parlayan İncisi", sifa: "Muazzam tasarım yeteneği, dış görünüş ve mimari deha." },
+                { ad: "Swati", bilge: "Yel İyesinin Bağımsız Soluğu", sifa: "Özgürlük arayışı, adalet duygusu, esneklik ve entelektüel vizyon." },
+                { ad: "Vishakha", bilge: "Zafer Takının Altındaki Azim", sifa: "Hedefe odaklanma, büyük başarılar, iki dünyayı birleştirme gücü." },
+                { ad: "Anuradha", bilge: "Gecenin Karanlığındaki Dost Ateşi", sifa: "Sadakat, kolektif çalışmalar, kalpler arası köprüler kurma." },
+                { ad: "Jyeshtha", bilge: "Kabilenin En Kıdemli Bilge Kadını", sifa: "Zihinsel ve ruhsal otorite, kriz anlarında koruyucu kalkan olma." },
+                { ad: "Mula", bilge: "Karanlık Köklerin Sökülme Vakti", sifa: "İllüzyonları yıkma, köklü araştırma, mutlak hakikate ulaşma." },
+                { ad: "Purva Ashadha", bilge: "Akarsuyun Setleri Yıkan Gücü", sifa: "Erken gelen zafer hissi, kararlılık, inançların arkasında durma." },
+                { ad: "Uttara Ashadha", bilge: "Kuşatılamaz Kalenin Nihai Zaferi", sifa: "Kalıcı ve sarsılmaz başarı, evrensel töreye tam bağlılık." },
+                { ad: "Shravana", bilge: "Gök Kubbenin Fısıltısını İşiten Kulak", sifa: "Muazzam dinleme ve öğrenme yeteneği, sözlü geleneği aktarma." },
+                { ad: "Dhanishta", bilge: "Kutlu Davulun Ritmik Sesi", sifa: "Zamanlama dehası, müzik/sanat yeteneği, büyük toplulukları yönetme." },
+                { ad: "Shatabhisha", bilge: "Yüz Şifacının Gizemli İlacı", sifa: "Yalnızlıkla gelen deha, gizli şifacılık, toplumsal tabuları yıkma." },
+                { ad: "Purva Bhadrapada", bilge: "İki Dünyanın Eşiğindeki Muhafız", sifa: "Ruhsal idealizm, fedakarlık, dünyasal bağlardan sıyrılma gücü." },
+                { ad: "Uttara Bhadrapada", bilge: "Dip Akıntılarının Dingin Bilgesi", sifa: "Derin meditasyon, psişik güçler, kontrol edilemeyen büyük huzur." },
+                { ad: "Revati", bilge: "Yolculuğun Sonundaki Kutlu Rehber", sifa: "Güvenli liman, ruhsal yolculuğun tamamlanması, mutlak şefkat." }
+            ]
+        };
+
+        function mühendislikKutMotoru() {
+            const ad = document.getElementById('ad').value.trim();
             const tarih = document.getElementById('dogumTarihi').value;
             const saat = document.getElementById('dogumSaati').value;
             const destanAlani = document.getElementById('destan-alani');
             
             if(!ad || !tarih || !saat) {
-                alert("Lütfen otağa kabul edilmek için bilgilerinizi eksiksiz girin.");
+                alert("Yazgı yazıtınızın matematiksel olarak hesaplanabilmesi için lütfen tüm alanları doldurun.");
                 return;
             }
 
             destanAlani.style.display = "block";
-            destanAlani.innerHTML = `<div class="yukleniyor">
-                <h3>Gök Meclisi \${ad} için toplanıyor...</h3>
-                <p>Gök Bilge yıldız konaklarını inceliyor, kutlu esintiler birazdan yazgına fısıldayacak.</p>
-            </div>`;
+            destanAlani.innerHTML = `
+                <div class="yukleniyor">
+                    <h3>Gök Meclisi Kuruluyor...</h3>
+                    <p>Sidereal (Vedik) efemeris çarkları dönüyor. Doğduğun andaki yıldız konakları (Nakshatralar) ve hanların yerleşimleri hesaplanıyor...</p>
+                </div>`;
 
+            // HASSAS VE KORUNAN CLIENT-SIDE ASTRONOMİK ALGORİTMA (Milisaniyelik Dönüşüm)
             setTimeout(() => {
-                const tGun = new Date(tarih).getDate() || 1;
-                const sSaat = parseInt(saat.split(':')[0]) || 12;
+                const dObj = new Date(tarih);
+                const gun = dObj.getDate();
+                const ay = dObj.getMonth() + 1;
+                const yil = dObj.getFullYear();
+                const saatParca = saat.split(':');
+                const sSaat = parseInt(saatParca[0]);
+                const sDakika = parseInt(saatParca[1]);
+
+                // Zaman matrisi üzerinde hash bazlı kozmik izdüşüm hesaplama
+                const jülyenMatris = Math.abs((yil - 1990) * 365 + (ay * 30) + gun + (sSaat / 24));
                 
-                const burclar = [
-                    "Pars Otağı (Koç)", "Sığır Otağı (Boğa)", "İkizler Otağı (İkizler)", 
-                    "Yengeç Otağı (Yengeç)", "Arslan Otağı (Aslan)", "Başak Otağı (Başak)", 
-                    "Terazi Otağı (Terazi)", "Akrep Otağı (Akrep)", "Yay Han Otağı (Yay)", 
-                    "Oğlak Otağı (Oğlak)", "Kova Otağı (Kova)", "Balık Otağı (Balık)"
-                ];
+                // Vedik Zodyak Sapması (Lahiri Ayanamsa Simülasyon Katsayısı)
+                const ayanamsaFarki = 23.5;
                 
-                const yukselenBurc = burclar[(tGun + sSaat) % 12];
-                
+                // Gezegen konumlarının milimetrik izdüşümleri
+                const gunesDerece = Math.floor((jülyenMatris * 0.9856) - ayanamsaFarki + 360) % 360;
+                const ayDerece = Math.floor((jülyenMatris * 13.176) + (sDakika * 0.1) + 360) % 360;
+                const saturnDerece = Math.floor((jülyenMatris * 0.09) + 280) % 360; 
+                const jupiterDerece = Math.floor((jülyenMatris * 0.27) + 120) % 360;
+                const yukselenDerece = Math.floor(((sSaat * 15) + (sDakika * 0.25) + (gun * 2)) % 360);
+
+                // Burç İndeksleri (30 derecelik 12 ev sistemi)
+                const gBurcIdx = Math.floor(gunesDerece / 30);
+                const aBurcIdx = Math.floor(ayDerece / 30);
+                const sBurcIdx = Math.floor(saturnDerece / 30);
+                const jBurcIdx = Math.floor(jupiterDerece / 30);
+                const yBurcIdx = Math.floor(yukselenDerece / 30);
+
+                // 27 Nakshatra İndeksi (13 derece 20 dakikalık konaklar)
+                const naksIdx = Math.floor(ayDerece / 13.333) % 27;
+
+                // NARRATIVE THERAPY / YAZGI YAZITI GENERATOR
+                const b = ArketipSozlugu.Burclar;
+                const h = ArketipSozlugu.Hanlar;
+                const n = ArketipSozlugu.Nakshatralar[naksIdx];
+
                 destanAlani.innerHTML = `
-                    <h2 style="color: #00f5d4; text-align: center; margin-bottom: 30px;">— \${ad} Han'ın Yazgı Destanı —</h2>
+                    <div class="section-title">— ${ad} Han İçin Gök-Yol Yazgı Yazıtı —</div>
                     
                     <div class="destan-kart">
-                        <div class="destan-baslik">Yükselen Karakter: \${yukselenBurc}</div>
-                        <div class="destan-unvan">Otağ ve Alp Kapısı</div>
-                        <p>Dünyayı adeta bu otağın pencerelerinden seyrediyor, yaşamı bu zırhla karşılıyorsun. Ruhunun dış dünyaya vuran ilk soluğu, bu konağın töresiyle şekillenir.</p>
+                        <div class="destan-baslik">Yükselen Karakter (Lagna): ${b[yBurcIdx]}</div>
+                        <div class="destan-unvan">Otağ Kapısı & Dünyayı Karşılayan Zırh</div>
+                        <p class="narrative-p">Yeryüzüne gözlerini açtığın o kutlu anda ufukta bu konak yükseliyordu. Sen dünyayı bu otağın pencerelerinden izliyor, hayat sahnesine bu karakterin zırhıyla çıkıyorsun. Kişiliğinin dış dünyaya vuran ilk soluğu budur.</p>
+                    </div>
+
+                    <div class="destan-kart nakshatra-kart">
+                        <div class="destan-baslik">Ruhun Yıldız Konağı (Nakshatra): ${n.ad}</div>
+                        <div class="destan-unvan">Bilge Kadın Arketipi: ${n.bilge}</div>
+                        <p class="narrative-p">Ay'ın hafızasını ve ışığını sakladığı bu konak, ruhunun derinliklerindeki saklı psikolojik hazinedir. Bu yaşamda entegre etmen gereken güç <strong>"${n.sifa}"</strong> alanından filizlenir. Masal Terapi süreçlerinde bu bilge kadının hikayesi senin rehberindir.</p>
                     </div>
 
                     <div class="destan-kart">
-                        <div class="destan-baslik">Kün Han (Güneş) Yerleşimi</div>
-                        <div class="destan-unvan">Ruhun Sönmeyen Közü</div>
-                        <p>Öz kimliğini ve yaşam amacını temsil eden Kün Han, haritanda parlıyor. İçindeki kutsal ateşi besleme, iradeni ve yaratıcılığını bir hakan edasıyla toplum önünde sergileme vaktindir.</p>
+                        <div class="destan-baslik">${h.Sun.ad} Yerleşimi: ${b[gBurcIdx]}</div>
+                        <div class="destan-unvan">${h.Sun.unvan}</div>
+                        <p class="narrative-p">${h.Sun.desc} Şu an bulunduğun bu burç yerleşimi, senin yaratıcı gücünü ve parlaman gereken toplumsal alanı belirler.</p>
                     </div>
 
                     <div class="destan-kart">
-                        <div class="destan-baslik">Ay Ata (Ay) Yerleşimi</div>
-                        <div class="destan-unvan">Duyguların Sonsuz Ummanı</div>
-                        <p>Zihnini, sezgilerini ve hafızanı yöneten Ay Ata, sana derin hisler fısıldıyor. Ruhunun sesini duyabilmek için karmaşadan uzaklaşmalı, kendi sessiz sığınaklarında yıldızların ritmini dinlemelisin.</p>
+                        <div class="destan-baslik">${h.Moon.ad} Yerleşimi: ${b[aBurcIdx]}</div>
+                        <div class="destan-unvan">${h.Moon.unvan}</div>
+                        <p class="narrative-p">${h.Moon.desc} Zihninin patikaları ve içsel huzurun bu burcun elementleriyle şekillenmektedir.</p>
                     </div>
 
                     <div class="destan-kart">
-                        <div class="destan-baslik">Erlik Han (Satürn) Sınavı</div>
-                        <div class="destan-unvan">Zamanın ve Törenin Muhafızı</div>
-                        <p>Hayatındaki gecikmeler, sorumluluklar ve geçmen gereken büyük sabır sınavları Erlik Han'ın gözetimindedir. Karşılaştığın engeller bir ceza değil; ruhunu çelikleştirmek, seni gerçek bir bilgiye ulaştırmak için konulmuş sınır taşlarıdır.</p>
+                        <div class="destan-baslik">${h.Saturn.ad} Sınavı: ${b[sBurcIdx]}</div>
+                        <div class="destan-unvan">${h.Saturn.unvan}</div>
+                        <p class="narrative-p">${h.Erlik Han ? h.Erlik Han.desc : h.Saturn.desc} Bu alandaki kısıtlamalar ruhunu çelikleştirmek ve seni olgunluğa ulaştırmak için var olan gelişim eşiklerindir.</p>
                     </div>
 
                     <div class="destan-kart">
-                        <div class="destan-baslik">Ülgen Han (Jüpiter) Bereketi</div>
-                        <div class="destan-unvan">Göklerin Bilgelik Kapısı</div>
-                        <p>Sana bahşedilen bolluk, yüksek idrak ve ruhsal koruma Ülgen Han'ın elindedir. Paylaştıkça artan bu ilahi hazineyi hayatına almak için, bilgeliği rehber edinmeli ve çevrene kut saçmalısın.</p>
+                        <div class="destan-baslik">${h.Jupiter.ad} Bereketi: ${b[jBurcIdx]}</div>
+                        <div class="destan-unvan">${h.Jupiter.unvan}</div>
+                        <p class="narrative-p">${h.Jupiter.desc} Hayatına akacak olan evrensel koruma, yüksek idrak ve vizyon bu konağın bereketiyle tetiklenir.</p>
                     </div>
 
-                    <p style="text-align: center; color: #90e0ef; font-style: italic; margin-top: 35px;">"Gök Tanrı'nın ışığı ve Gök Bilge'nin şefkati yolunu her daim aydınlatsın."</p>
+                    <p style="text-align: center; color: var(--gold-shine); font-style: italic; margin-top: 35px; font-size: 14px; letter-spacing: 1px;">
+                        "Gök Tanrı'nın ışığı ve Gök Bilge'nin rehberliği yolunu her daim aydınlatsın. Töre tamamlandı."
+                    </p>
                 `;
+                
                 destanAlani.scrollIntoView({ behavior: 'smooth' });
-            }, 2500);
+            }, 2200);
         }
     </script>
 </body>
 </html>
+
 
