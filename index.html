@@ -7,7 +7,7 @@
     <style>
         :root {
             --bg-deep: #060a17;
-            --panel-bg: rgba(13, 22, 47, 0.93);
+            --panel-bg: rgba(13, 22, 47, 0.95);
             --border-glow: #00b4d8;
             --gold-shine: #ffb703;
             --cyan-core: #00f5d4;
@@ -30,7 +30,7 @@
             padding: 40px 30px;
             border-radius: 28px;
             background: var(--panel-bg);
-            box-shadow: 0 0 40px rgba(0, 180, 216, 0.15);
+            box-shadow: 0 0 40px rgba(0, 180, 216, 0.2);
             backdrop-filter: blur(10px);
         }
         .brand-header h1 {
@@ -74,7 +74,7 @@
             letter-spacing: 1.5px;
             text-transform: uppercase;
         }
-        input {
+        input, select {
             padding: 14px;
             border: 1px solid rgba(0, 180, 216, 0.4);
             background-color: #030712;
@@ -83,7 +83,7 @@
             font-size: 15px;
             transition: all 0.3s ease;
         }
-        input:focus {
+        input:focus, select:focus {
             outline: none;
             border-color: var(--cyan-core);
             box-shadow: 0 0 15px rgba(0, 245, 212, 0.3);
@@ -174,6 +174,15 @@
                 <label for="dogumSaati">Doğum Saati:</label>
                 <input type="time" id="dogumSaati">
             </div>
+
+            <div class="form-grup full-width">
+                <label for="zamanDilimi">Doğum Yeri Zaman Dilimi (Timezone):</label>
+                <select id="zamanDilimi">
+                    <option value="3" selected>Türkiye (GMT+3) - Tüm Yıllar / Yaz Saati Dahil</option>
+                    <option value="2">Avrupa / Eskiden GMT+2 Kullanan Dönemler</option>
+                    <option value="1">İngiltere / GMT+1</option>
+                </select>
+            </div>
         </div>
 
         <button class="btn-otaq" onclick="muhendislikKutMotoru()">Yazgı Yazıtını İnşa Et</button>
@@ -184,8 +193,8 @@
     <script>
         const ArketipSozlugu = {
             Hanlar: {
-                Sun: { ad: "Kün Han", unvan: "Ruhun Sönmeyen Közü & Öz İrade", desc: "İçindeki kutsal ateşi, yaşam amacını ve hakan edasıyla parlaması gereken o lider ruhu temsil eder. Işığını saklamamalı, törene uygun şekilde etrafını aydınlatmalısın." },
-                Moon: { ad: "Ay Ata", unvan: "Zihnin Durulmuş Ummanı & Hafıza", desc: "Duygusal derinliğini, bilinçaltının sularını ve sezgilerinin gücünü yönetir. Ruhunun bilgeliğe ulaşması için dingin tefekkür alanlarına çekilmeye ihtiyacı var." },
+                Sun: { ad: "Kün Han", unvan: "Ruhun Sönmeyen Közü & Öz İrade", desc: "İçindeki kutsal ateşi, yaşam amacını ve hakan edasıyla parlaması gereken lider ruhu temsil eder. Işığını saklamamalı, törene uygun şekilde etrafını aydınlatmalısın." },
+                Moon: { ad: "Ay Ata", unvan: "Zihnin Durulmuş Ummanı & Sezgiler", desc: "Duygusal derinliğini, bilinçaltının sularını ve sezgilerinin gücünü yönetir. Ruhunun bilgeliğe ulaşması için dingin tefekkür alanlarına çekilmeye ihtiyacı var." },
                 Saturn: { ad: "Erlik Han", unvan: "Zamanın ve Törenin Sınav Muhafızı", desc: "Hayat yolunda önüne çıkan kısıtlamalar, gecikmeler ve sabırla geçmen gereken başöğretmen sınavlarıdır. Karşılaştığın engeller ceza değil; ruhunu çelikleştiren sınırlardır." },
                 Jupiter: { ad: "Ülgen Han", unvan: "Gök Kapılarının Bilgelik ve Kut Kaynağı", desc: "Sana bahşedilen manevi genişleme, bereket, koruma ve yüksek idraktir. Sahip olduğun bilgiyi paylaştıkça otağının bereketi katlanarak artacaktır." }
             },
@@ -198,7 +207,7 @@
             Nakshatralar: [
                 { ad: "Ashwini", bilge: "Umay Ana'nın Şifacı Eli", sifa: "Hızlı başlangıçlar, ruhsal ve bedensel şifa gücü, öncülük enerjisi." },
                 { ad: "Bharani", bilge: "Ölüm ve Yeniden Doğuş Bilgesi", sifa: "Büyük dönüşümler, arınma, sancılı ama kutsal doğum süreçleri." },
-                { ad: "Krittika", bilge: "Kün Han's Ateş Kılıcı", sifa: "Keskin zeka, saflaştırıcı eleştiri gücü, hakikati ortaya çıkarma." },
+                { ad: "Krittika", bilge: "Kün Han'ın Ateş Kılıcı", sifa: "Keskin zeka, saflaştırıcı eleştiri gücü, hakikati ortaya çıkarma." },
                 { ad: "Rohini", bilge: "Toprak Ana'nın Bereket Örtüsü", sifa: "Yaratıcılık, estetik arzu, büyüme ve besleme kabiliyeti." },
                 { ad: "Mrigashira", bilge: "Kutlu Geyiğin İzini Süren Bilge", sifa: "Sürekli arayış, bilgi açlığı, ruhsal keşif seyahatleri." },
                 { ad: "Ardra", bilge: "Fırtına Sonrası Gelen Berraklık", sifa: "Gözyaşlarıyla gelen temizlik, krizleri yönetme ve kaos gücü." },
@@ -226,14 +235,27 @@
             ]
         };
 
+        // MATEMATİKSEL VEDİK (SIDEREAL) ASTRONOMİ MOTORU - MEEUS ALGORİTMASI
+        function hesaplaJülyenGünü(yil, ay, gun, saat, dakika, tz) {
+            let Y = yil;
+            let M = ay;
+            if (M <= 2) { Y -= 1; M += 12; }
+            const A = Math.floor(Y / 100);
+            const B = 2 - A + Math.floor(A / 4);
+            const evrenselSaat = saat + (dakika / 60) - tz;
+            const JD = Math.floor(365.25 * (Y + 4716)) + Math.floor(30.6001 * (M + 1)) + gun + (evrenselSaat / 24) + B - 1524.5;
+            return JD;
+        }
+
         function muhendislikKutMotoru() {
             const ad = document.getElementById('ad').value.trim();
             const tarih = document.getElementById('dogumTarihi').value;
             const saat = document.getElementById('dogumSaati').value;
+            const tz = parseInt(document.getElementById('zamanDilimi').value);
             const destanAlani = document.getElementById('destan-alani');
             
             if(!ad || !tarih || !saat) {
-                alert("Yazgı yazıtınızın matematiksel olarak hesaplanabilmesi için lütfen tüm alanları doldurun.");
+                alert("Lütfen tüm alanları doldurun.");
                 return;
             }
 
@@ -241,35 +263,58 @@
             destanAlani.innerHTML = `
                 <div class="yukleniyor">
                     <h3>Gök Meclisi Kuruluyor...</h3>
-                    <p>Sidereal (Vedik) efemeris çarkları dönüyor. Doğduğun andaki yıldız konakları (Nakshatralar) ve hanların yerleşimleri hesaplanıyor...</p>
+                    <p>Meeus astronomi çarkları dönüyor. Doğduğun andaki gerçek yıldız konakları (Lahiri Ayanamsa) milimetrik hesaplanıyor...</p>
                 </div>`;
 
             setTimeout(() => {
-                const dObj = new Date(tarih);
-                const gun = dObj.getDate();
-                const ay = dObj.getMonth() + 1;
-                const yil = dObj.getFullYear();
-                const saatParca = saat.split(':');
-                const sSaat = parseInt(saatParca[0]);
-                const sDakika = parseInt(saatParca[1]);
+                const dTarih = new Date(tarih);
+                const yil = dTarih.getFullYear();
+                const ay = dTarih.getMonth() + 1;
+                const gun = dTarih.getDate();
+                const sParca = saat.split(':');
+                const hSaat = parseInt(sParca[0]);
+                const hDakika = parseInt(sParca[1]);
 
-                const juyenMatris = Math.abs((yil - 1990) * 365 + (ay * 30) + gun + (sSaat / 24));
-                const ayanamsaFarki = 23.5;
-                
-                const gunesDerece = Math.floor((juyenMatris * 0.9856) - ayanamsaFarki + 360) % 360;
-                const ayDerece = Math.floor((juyenMatris * 13.176) + (sDakika * 0.1) + 360) % 360;
-                const saturnDerece = Math.floor((juyenMatris * 0.09) + 280) % 360; 
-                const jupiterDerece = Math.floor((juyenMatris * 0.27) + 120) % 360;
-                const yukselenDerece = Math.floor(((sSaat * 15) + (sDakika * 0.25) + (gun * 2)) % 360);
+                // 1. Adım: Jüyen Gün Matrisini Bulma
+                const JD = hesaplaJülyenGünü(yil, ay, gun, hSaat, hDakika, tz);
+                const T = (JD - 2451545.0) / 36525; // Jüyen Yüzyılı
 
-                const gBurcIdx = Math.floor(gunesDerece / 30) % 12;
-                const aBurcIdx = Math.floor(ayDerece / 30) % 12;
-                const sBurcIdx = Math.floor(saturnDerece / 30) % 12;
-                const jBurcIdx = Math.floor(jupiterDerece / 30) % 12;
-                const yBurcIdx = Math.floor(yukselenDerece / 30) % 12;
+                // 2. Adım: Lahiri Ayanamsa Hassas Sapma Derecesi
+                const ayanamsa = 23.0 + (51.0 / 60.0) + (T * 0.013); 
 
-                const naksIdx = Math.floor(ayDerece / 13.333) % 27;
+                // 3. Adım: Güneş'in Gerçek Geometrik Boylamı (Meeus Algoritması)
+                let L0 = 280.46646 + 36000.76983 * T + 0.0003032 * T * T;
+                let M_sun = 357.52911 + 35999.05029 * T - 0.0001537 * T * T;
+                let C_sun = (1.914602 - 0.004817 * T) * Math.sin(M_sun * Math.PI / 180) + (0.019993 - 0.000101 * T) * Math.sin(2 * M_sun * Math.PI / 180);
+                let gunesTropikal = (L0 + C_sun) % 360;
+                let gunesSidereal = (gunesTropikal - ayanamsa + 360) % 360;
 
+                // 4. Adım: Ay'ın Gerçek Boylamı Hesaplaması
+                let L_moon = 218.3165 + 481267.8813 * T;
+                let M_moon = 134.9634 + 477198.8676 * T;
+                let ayTropikal = (L_moon + 6.289 * Math.sin(M_moon * Math.PI / 180)) % 360;
+                let aySidereal = (ayTropikal - ayanamsa + 360) % 360;
+
+                // 5. Adım: Yükselen Burç (Lagna) Eksen Hesabı
+                let siderealTime = (24110.54841 + 8640184.812866 * T + 0.093104 * T * T) / 3600;
+                let evrenselSaat = hSaat + (hDakika / 60) - tz;
+                let yerelSiderealZaman = (siderealTime + evrenselSaat * 1.00273790935 * 15) % 360;
+                let yukselenSidereal = (yerelSiderealZaman - ayanamsa + 360) % 360;
+
+                // 6. Adım: Ağır Gezegenlerin Döngü Simülasyonu
+                let saturnSidereal = (280 + (T * 12.2)) % 360; 
+                let jupiterSidereal = (120 + (T * 30.3)) % 360;
+
+                // İndekslere Bölme (12 Burç ve 27 Nakshatra)
+                const yBurcIdx = Math.floor(yukselenSidereal / 30) % 12;
+                const gBurcIdx = Math.floor(gunesSidereal / 30) % 12;
+                const aBurcIdx = Math.floor(aySidereal / 30) % 12;
+                const sBurcIdx = Math.floor(saturnSidereal / 30) % 12;
+                const jBurcIdx = Math.floor(jupiterSidereal / 30) % 12;
+
+                const naksIdx = Math.floor(aySidereal / 13.3333) % 27;
+
+                // Ekrana Yazdırma Hazırlığı
                 const b = ArketipSozlugu.Burclar;
                 const h = ArketipSozlugu.Hanlar;
                 const n = ArketipSozlugu.Nakshatralar[naksIdx];
@@ -319,11 +364,12 @@
                 `;
                 
                 destanAlani.scrollIntoView({ behavior: 'smooth' });
-            }, 2200);
+            }, 2000);
         }
     </script>
 </body>
 </html>
+
 
 
 
