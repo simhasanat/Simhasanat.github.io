@@ -148,6 +148,12 @@
         }
         .narrative-p { line-height: 1.8; color: #e2e8f0; font-size: 15px; margin: 0; }
         .yukleniyor { text-align: center; color: var(--text-dim); font-style: italic; padding: 30px 0; }
+        .bilgi-notu {
+            font-size: 11px;
+            color: var(--text-dim);
+            margin-top: 4px;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -166,26 +172,29 @@
             </div>
 
             <div class="form-grup">
-                <label for="dogumTarihi">Doğum Tarihi:</label>
-                <input type="date" id="dogumTarihi">
+                <label for="yukselenBurc">Vedik (Sidereal) Yükselen Burcunuz:</label>
+                <select id="yukselenBurc"></select>
+                <div class="bilgi-notu">AstroSage veya Vedik haritanızdaki Lagna burcu</div>
             </div>
 
             <div class="form-grup">
-                <label for="dogumSaati">Doğum Saati:</label>
-                <input type="time" id="dogumSaati">
+                <label for="nakshatra">Ay Konağınız (Nakshatra):</label>
+                <select id="nakshatra"></select>
+                <div class="bilgi-notu">Doğduğunuz andaki Vedik Ay konumunuz</div>
             </div>
 
-            <div class="form-grup full-width">
-                <label for="zamanDilimi">Doğum Yeri Zaman Dilimi (Timezone):</label>
-                <select id="zamanDilimi">
-                    <option value="3" selected>Türkiye (GMT+3) - Tüm Yıllar / Yaz Saati Dahil</option>
-                    <option value="2">Avrupa / Eskiden GMT+2 Kullanan Dönemler</option>
-                    <option value="1">İngiltere / GMT+1</option>
-                </select>
+            <div class="form-grup">
+                <label for="gunesBurc">Vedik Güneş Burcunuz:</label>
+                <select id="gunesBurc"></select>
+            </div>
+
+            <div class="form-grup">
+                <label for="ayBurc">Vedik Ay Burcunuz:</label>
+                <select id="ayBurc"></select>
             </div>
         </div>
 
-        <button class="btn-otaq" onclick="muhendislikKutMotoru()">Yazgı Yazıtını İnşa Et</button>
+        <button class="btn-otaq" onclick="naratifKutMotoru()">Yazgı Yazıtını İnşa Et</button>
 
         <div id="destan-alani" style="display: none;"></div>
     </div>
@@ -235,27 +244,32 @@
             ]
         };
 
-        // MATEMATİKSEL VEDİK (SIDEREAL) ASTRONOMİ MOTORU - MEEUS ALGORİTMASI
-        function hesaplaJülyenGünü(yil, ay, gun, saat, dakika, tz) {
-            let Y = yil;
-            let M = ay;
-            if (M <= 2) { Y -= 1; M += 12; }
-            const A = Math.floor(Y / 100);
-            const B = 2 - A + Math.floor(A / 4);
-            const evrenselSaat = saat + (dakika / 60) - tz;
-            const JD = Math.floor(365.25 * (Y + 4716)) + Math.floor(30.6001 * (M + 1)) + gun + (evrenselSaat / 24) + B - 1524.5;
-            return JD;
-        }
+        // Form Seçeneklerini Dinamik Doldurma
+        window.onload = function() {
+            const bSelects = ['yukselenBurc', 'gunesBurc', 'ayBurc'];
+            bSelects.forEach(id => {
+                const select = document.getElementById(id);
+                ArketipSozlugu.Burclar.forEach((b, i) => {
+                    select.options[select.options.length] = new Option(b, i);
+                });
+            });
 
-        function muhendislikKutMotoru() {
+            const nSelect = document.getElementById('nakshatra');
+            ArketipSozlugu.Nakshatralar.forEach((n, i) => {
+                nSelect.options[nSelect.options.length] = new Option(`${n.ad} (${n.bilge})`, i);
+            });
+        };
+
+        function naratifKutMotoru() {
             const ad = document.getElementById('ad').value.trim();
-            const tarih = document.getElementById('dogumTarihi').value;
-            const saat = document.getElementById('dogumSaati').value;
-            const tz = parseInt(document.getElementById('zamanDilimi').value);
+            const yBurcIdx = document.getElementById('yukselenBurc').value;
+            const naksIdx = document.getElementById('nakshatra').value;
+            const gBurcIdx = document.getElementById('gunesBurc').value;
+            const aBurcIdx = document.getElementById('ayBurc').value;
             const destanAlani = document.getElementById('destan-alani');
             
-            if(!ad || !tarih || !saat) {
-                alert("Lütfen tüm alanları doldurun.");
+            if(!ad) {
+                alert("Lütfen adınızı veya mahlasınızı girin.");
                 return;
             }
 
@@ -263,61 +277,17 @@
             destanAlani.innerHTML = `
                 <div class="yukleniyor">
                     <h3>Gök Meclisi Kuruluyor...</h3>
-                    <p>Meeus astronomi çarkları dönüyor. Doğduğun andaki gerçek yıldız konakları (Lahiri Ayanamsa) milimetrik hesaplanıyor...</p>
+                    <p>Seçilen yıldız konumları mitolojik yazıt diline tercüme ediliyor...</p>
                 </div>`;
 
             setTimeout(() => {
-                const dTarih = new Date(tarih);
-                const yil = dTarih.getFullYear();
-                const ay = dTarih.getMonth() + 1;
-                const gun = dTarih.getDate();
-                const sParca = saat.split(':');
-                const hSaat = parseInt(sParca[0]);
-                const hDakika = parseInt(sParca[1]);
-
-                // 1. Adım: Jüyen Gün Matrisini Bulma
-                const JD = hesaplaJülyenGünü(yil, ay, gun, hSaat, hDakika, tz);
-                const T = (JD - 2451545.0) / 36525; // Jüyen Yüzyılı
-
-                // 2. Adım: Lahiri Ayanamsa Hassas Sapma Derecesi
-                const ayanamsa = 23.0 + (51.0 / 60.0) + (T * 0.013); 
-
-                // 3. Adım: Güneş'in Gerçek Geometrik Boylamı (Meeus Algoritması)
-                let L0 = 280.46646 + 36000.76983 * T + 0.0003032 * T * T;
-                let M_sun = 357.52911 + 35999.05029 * T - 0.0001537 * T * T;
-                let C_sun = (1.914602 - 0.004817 * T) * Math.sin(M_sun * Math.PI / 180) + (0.019993 - 0.000101 * T) * Math.sin(2 * M_sun * Math.PI / 180);
-                let gunesTropikal = (L0 + C_sun) % 360;
-                let gunesSidereal = (gunesTropikal - ayanamsa + 360) % 360;
-
-                // 4. Adım: Ay'ın Gerçek Boylamı Hesaplaması
-                let L_moon = 218.3165 + 481267.8813 * T;
-                let M_moon = 134.9634 + 477198.8676 * T;
-                let ayTropikal = (L_moon + 6.289 * Math.sin(M_moon * Math.PI / 180)) % 360;
-                let aySidereal = (ayTropikal - ayanamsa + 360) % 360;
-
-                // 5. Adım: Yükselen Burç (Lagna) Eksen Hesabı
-                let siderealTime = (24110.54841 + 8640184.812866 * T + 0.093104 * T * T) / 3600;
-                let evrenselSaat = hSaat + (hDakika / 60) - tz;
-                let yerelSiderealZaman = (siderealTime + evrenselSaat * 1.00273790935 * 15) % 360;
-                let yukselenSidereal = (yerelSiderealZaman - ayanamsa + 360) % 360;
-
-                // 6. Adım: Ağır Gezegenlerin Döngü Simülasyonu
-                let saturnSidereal = (280 + (T * 12.2)) % 360; 
-                let jupiterSidereal = (120 + (T * 30.3)) % 360;
-
-                // İndekslere Bölme (12 Burç ve 27 Nakshatra)
-                const yBurcIdx = Math.floor(yukselenSidereal / 30) % 12;
-                const gBurcIdx = Math.floor(gunesSidereal / 30) % 12;
-                const aBurcIdx = Math.floor(aySidereal / 30) % 12;
-                const sBurcIdx = Math.floor(saturnSidereal / 30) % 12;
-                const jBurcIdx = Math.floor(jupiterSidereal / 30) % 12;
-
-                const naksIdx = Math.floor(aySidereal / 13.3333) % 27;
-
-                // Ekrana Yazdırma Hazırlığı
                 const b = ArketipSozlugu.Burclar;
                 const h = ArketipSozlugu.Hanlar;
                 const n = ArketipSozlugu.Nakshatralar[naksIdx];
+
+                // Satürn ve Jüpiter için haritaya göre dengeleyici sabit yerleşimler
+                const sBurcIdx = (parseInt(yBurcIdx) + 9) % 12;
+                const jBurcIdx = (parseInt(yBurcIdx) + 4) % 12;
 
                 destanAlani.innerHTML = `
                     <div class="section-title">— ${ad} Han İçin Gök-Yol Yazgı Yazıtı —</div>
@@ -364,11 +334,13 @@
                 `;
                 
                 destanAlani.scrollIntoView({ behavior: 'smooth' });
-            }, 2000);
+            }, 1200);
         }
     </script>
 </body>
 </html>
+
+        
 
 
 
